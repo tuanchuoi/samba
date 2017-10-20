@@ -78,3 +78,66 @@ sudo systemctl restart smbd
 Trên máy Windows, truy cập bằng \\IP-SAMBA
 <img src="http://2.pik.vn/2017494800e2-ab00-49ba-9f9b-773d0cf42016.png">
 <img src="http://2.pik.vn/20170f013a86-d5ca-40ba-9c38-a86dcd858f28.png">
+
+
+
+
+### 5. Cấu hình folder dành cho user
+
+Khởi tạo group, user, pasword trong samba
+```
+sudo addgroup smbgrp
+sudo usermod aaronkilik -aG smbgrp
+sudo smbpasswd -a aaronkilik
+````
+Lưu ý:
+```
+User samba và user hệ thống là khách nhau, nếu muốn đồng bộ user từ hệ thống sang samba thì dùng libpam-winbind
+```
+khơi tạo thư mục lưu và phân quyền
+```
+sudo mkdir -p /srv/samba/secure_shares
+sudo chmod -R 0770 /srv/samba/secure_shares
+sudo chown -R root:smbgrp /srv/samba/secure_shares
+```
+
+Thêm cấu hình trong file samba
+```
+sudo nano /etc/samba/smb.conf
+```
+```
+[Secure]
+comment = Secure File Server Share
+path =  /srv/samba/secure_shares
+valid users = @smbgrp
+guest ok = no
+writable = yes
+browsable = yes
+```
+
+Kiểm tra cài đặt trên
+```
+testparm
+```
+```
+...
+[Anonymous]
+comment = Anonymous File Server Share
+path = /srv/samba/anonymous_shares
+force user = nobody
+read only = No
+guest ok = Yes
+[Secure]
+comment = Secure File Server Share
+path = /srv/samba/secure_shares
+valid users = @smbgrp
+read only = No
+```
+Khởi động lại samba
+```
+sudo systemctl restart smbd
+```
+Trên máy Windows, truy cập bằng \\IP-SAMBA
+
+<img src="http://2.pik.vn/2017fe19345a-0d43-4577-a277-945a5137975e.png">
+<img src="http://2.pik.vn/2017e8b781a2-637f-4ec5-bce9-a4144ded3d66.png">
