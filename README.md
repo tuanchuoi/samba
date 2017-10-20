@@ -14,7 +14,7 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
 
 ### 3. Kiểm tra tên workgroup của máy Windows
 
-![]({{site.baseurl}}/https://imgur.com/a/Yqg2A)
+<img src="http://2.pik.vn/20176f5bc729-3bbb-4c59-871d-818c54816228.png">
 
 
 ### 4. Cấu hình folder dành cho khách
@@ -76,5 +76,5 @@ Khởi động lại samba
 sudo systemctl restart smbd
 ```
 Trên máy Windows, truy cập bằng \\IP-SAMBA
-![]({{site.baseurl}}/http://2.pik.vn/2017494800e2-ab00-49ba-9f9b-773d0cf42016.png)
-![]({{site.baseurl}}/http://2.pik.vn/20170f013a86-d5ca-40ba-9c38-a86dcd858f28.png)
+<img src="http://2.pik.vn/2017494800e2-ab00-49ba-9f9b-773d0cf42016.png">
+<img src="http://2.pik.vn/20170f013a86-d5ca-40ba-9c38-a86dcd858f28.png">
