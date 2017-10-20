@@ -19,7 +19,7 @@ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.orig
 
 ### 4. Cấu hình folder dành cho khách
 
-khơi tạo thư mục lưu và phân quyền
+Khởi tạo thư mục lưu và phân quyền
 ```
 sudo mkdir -p /srv/samba/anonymous_shares
 ```
@@ -92,9 +92,9 @@ sudo smbpasswd -a aaronkilik
 ````
 Lưu ý:
 ```
-User samba và user hệ thống là khách nhau, nếu muốn đồng bộ user từ hệ thống sang samba thì dùng libpam-winbind
+User samba và user hệ thống là khác nhau, nếu muốn đồng bộ user từ hệ thống sang samba thì dùng libpam-winbind
 ```
-khơi tạo thư mục lưu và phân quyền
+Khởi tạo thư mục lưu và phân quyền
 ```
 sudo mkdir -p /srv/samba/secure_shares
 sudo chmod -R 0770 /srv/samba/secure_shares
